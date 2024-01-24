@@ -1,0 +1,11 @@
+<select [(ngModel)]="elementoSelecionado" (change)="filtrarReacao(elementoSelecionado)">
+    <option *ngFor="let elemento of elementos" [value]="elemento">
+      {{ elemento }}
+    </option>
+</select>
+
+<select [(ngModel)]="reacaoSelecionada">
+    <option *ngFor="let reacao of reacoes" [value]="reacao">
+      {{ reacao }}
+    </option>
+</select>

@@ -5,13 +5,19 @@ import { TipoReacao } from "../tipos/tipo-reacao";
 import { Calculadora } from "./calculadora";
 import { CalculadoraComum } from "./calculadora-comum";
 import { PorcentagemTalento } from "./porcentagem-talento";
+import { CalculadoraAmplificadora } from "./calculadora-amplificadora";
 
 export class GeradorCalculadora {
 
     static instanciarCalculadora(reacao: Reacao, form: FormGroup): Calculadora {
-        if (MapeamentoReacoes.tipoPorReacao.get(reacao) === TipoReacao.NENHUMA) {
-            return new CalculadoraComum(form);
+        switch(MapeamentoReacoes.tipoPorReacao.get(reacao)){
+            case TipoReacao.NENHUMA:
+                return new CalculadoraComum(form);
+            case TipoReacao.AMPLIFICADORA:
+                return new CalculadoraAmplificadora(form, reacao);
+            case TipoReacao.TRANSFORMATIVA:
+                throw new Error("Não implementado");
         }
-        throw new Error("Não implementado");
+        throw new Error("Erro inesperado");
     }
 }

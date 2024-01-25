@@ -32,12 +32,13 @@ export class FormDanoComponent{
       taxaCritica: [5],
       danoCritico: [50],
       maestriaElemental: [0],
+      bonusReacao: [0],
       nivel: [0]
     });
   }
 
   public tipoReacao(): TipoReacao | undefined{
-    return MapeamentoReacoes.tipoPorReacao.get(this.reacao || Reacao.NENHUMA);
+    return MapeamentoReacoes.tipoPorReacao.get(this.reacao);
   }
 
   public calcular(): void{

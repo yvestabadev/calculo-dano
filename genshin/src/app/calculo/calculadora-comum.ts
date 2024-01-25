@@ -24,11 +24,10 @@ export class CalculadoraComum implements Calculadora{
         this.base = talentos.map(key => key.porcentagem * key.valor / 100).reduce((sum, num) => sum + num, 0);
         this.multiplicadorDanoBase = this.verificaNuloMultiplicador(form.get('multiplicaDanoBase')?.value);
         this.somadorDanoBase = form.get('somaDanoBase')?.value / 100;
-        this.bonusDanoElemento = this.bonusPorcentagem(form.get('bonusDanoElemento')?.value);
+        this.bonusDanoElemento = form.get('bonusDanoElemento')?.value / 100 + 1;
         this.taxaCritica = form.get('taxaCritica')?.value / 100;
         this.danoCritico = form.get('danoCritico')?.value / 100;
         this.nivel = form.get('nivel')?.value;
-
     }
     
     calcular(): number {
@@ -42,10 +41,6 @@ export class CalculadoraComum implements Calculadora{
             return 1;
         }
         return valor;
-    }
-
-    private bonusPorcentagem(valor: number){
-        return valor / 100 + 1;
     }
 
 }

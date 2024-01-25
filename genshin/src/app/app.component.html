@@ -1,1 +1,2 @@
-<app-select-reacao></app-select-reacao>
+<app-select-reacao (outputReacao)="defineReacao($event)"></app-select-reacao>
+<app-form-dano [reacao]="this.reacao"></app-form-dano>

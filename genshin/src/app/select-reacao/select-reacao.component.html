@@ -4,7 +4,7 @@
     </option>
 </select>
 
-<select [(ngModel)]="reacaoSelecionada">
+<select [(ngModel)]="reacaoSelecionada" (change)="emitir()">
     <option *ngFor="let reacao of reacoes" [value]="reacao">
       {{ reacao }}
     </option>

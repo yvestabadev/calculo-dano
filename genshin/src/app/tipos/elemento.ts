@@ -5,5 +5,6 @@ export enum Elemento{
     ELECTRO = "Electro",
     PYRO = "Pyro",
     HYDRO = "Hydro",
-    DENDRO = "Dendro"
+    DENDRO = "Dendro",
+    NENHUM = "Nenhum"
 }

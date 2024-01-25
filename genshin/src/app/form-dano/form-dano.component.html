@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="calcular()">
+    <div *ngIf="tipoReacao() !== reacaoTransformativa">
+        <div *ngFor="let talent of talento.controls; let i = index">
+            <div formArrayName="valorTalento">
+                <label for="talent-{{ i }}">Valor em % do talento (ex: 122,5):</label>
+                <input id="talent-{{ i }}" type="number" [formControlName]="i">
+            </div>
+            <div formArrayName="valorPoder">
+                <label for="poder-{{ i }}">Poder correspondente ao talento (ATK, DEF, HP, etc):</label>
+                <input id="poder-{{ i }}" type="number" [formControlName]="i">
+                <div *ngIf="talento.controls.length > 1">
+                    <button type="button" (click)="removeTalento(i)">Remove</button>
+                </div>
+            </div>
+        </div>
+        <button type="button" (click)="addTalento()">Adicionar outra variante de talento</button>
+        <div>
+            <label for="multDanoBase">Multiplicador de dano base (Ex: habilidade da Furina que transforma o dano em 110% do original): </label>
+            <input id="multDanoBase" type="number" placeholder="Porcentagem do dano original" formControlName="multiplicaDanoBase">
+        </div>
+        <div>
+            <label for="addDanoBase">Adição ao dano base (Ex: habilidade que aumenta o dano em 15%): </label>
+            <input id="addDanoBase" type="number" placeholder="Porcentagem da adição" formControlName="somaDanoBase">
+        </div>
+        <div>
+            <label for="bonusDanoElemento">Bônus do elemento da habilidade (Ex: set da bruxa carmesin, ou bônus de dano físico): </label>
+            <input id="bonusDanoElemento" type="number" placeholder="Porcentagem do bônus" formControlName="bonusDanoElemento">
+        </div>
+        <div>
+            <label for="taxaCritica">Taxa crítica: </label>
+            <input id="taxaCritica" type="number" placeholder="Porcentagem da taxa" formControlName="taxaCritica">
+        </div>
+        <div>
+            <label for="danoCritico">Dano crítico: </label>
+            <input id="danoCritico" type="number" placeholder="Porcentagem do dano" formControlName="danoCritico">
+        </div>
+    </div>
+  
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>

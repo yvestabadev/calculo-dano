@@ -16,5 +16,6 @@ export enum Reacao{
     FUSAO = "Fusão",
     CATALISACAO = "Catalisação",
     PROPAGACAO = "Propagação",
-    INTENSIFICACAO = "Intensificação"
+    INTENSIFICACAO = "Intensificação",
+    NENHUMA = "Nenhuma"
 }

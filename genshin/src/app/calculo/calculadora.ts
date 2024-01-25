@@ -6,5 +6,6 @@ export interface Calculadora{
     multiplicadorReacao: number;
     taxaCritica: number;
     danoCritico: number;
+    nivel: number;
     calcular():number;
 }

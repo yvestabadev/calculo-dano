@@ -1,11 +1,18 @@
-<select [(ngModel)]="elementoSelecionado" (change)="filtrarReacao(elementoSelecionado)">
-    <option *ngFor="let elemento of elementos" [value]="elemento">
-      {{ elemento }}
-    </option>
-</select>
-
-<select [(ngModel)]="reacaoSelecionada" (change)="emitir()">
-    <option *ngFor="let reacao of reacoes" [value]="reacao">
-      {{ reacao }}
-    </option>
-</select>
+<div class="container">
+  <p>Qual o elemento da reação?</p>
+  <div class="select">
+    <select [(ngModel)]="elementoSelecionado" (change)="filtrarReacao(elementoSelecionado)">
+      <option *ngFor="let elemento of elementos" [value]="elemento">
+        {{ elemento }}
+      </option>
+    </select>
+  </div>
+  <p>Escolha a reação (ou nenhuma do caso de não ter)</p>
+  <div class="select">
+    <select [(ngModel)]="reacaoSelecionada" (change)="emitir()">
+      <option *ngFor="let reacao of reacoes" [value]="reacao">
+        {{ reacao }}
+      </option>
+    </select>
+  </div>
+</div>

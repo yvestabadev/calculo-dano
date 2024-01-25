@@ -1,2 +1,2 @@
 <app-select-reacao (outputReacao)="defineReacao($event)"></app-select-reacao>
-<app-form-dano [reacao]="this.reacao"></app-form-dano>
+<app-form-dano *ngIf="reacao !== undefined" [reacao]="reacao!"></app-form-dano>

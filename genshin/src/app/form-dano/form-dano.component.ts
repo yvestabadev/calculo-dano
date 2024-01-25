@@ -5,6 +5,7 @@ import { MapeamentoReacoes } from '../tipos/mapeamento-reacoes';
 import { PorcentagemTalento } from '../calculo/porcentagem-talento';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { GeradorCalculadora } from '../calculo/gerador-calculadora';
 
 @Component({
   selector: 'app-form-dano',
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
 export class FormDanoComponent{
 
   @Input()
-  reacao?: Reacao;
+  reacao!: Reacao;
   poderHabilidades: PorcentagemTalento[] = [new PorcentagemTalento(0.0, 0.0)];
   campos?: string[];
   form!: FormGroup;
@@ -40,7 +41,7 @@ export class FormDanoComponent{
   }
 
   public calcular(): void{
-    console.log(this.form);
+    console.log(GeradorCalculadora.instanciarCalculadora(this.reacao, this.form).calcular());
   }
 
   get talento(){
@@ -62,6 +63,10 @@ export class FormDanoComponent{
 
   get reacaoTransformativa(){
     return TipoReacao.TRANSFORMATIVA;
+  }
+
+  get reacaoSemAdicao(){
+    return TipoReacao.NENHUMA;
   }
 
 }

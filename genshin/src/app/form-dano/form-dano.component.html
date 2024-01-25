@@ -35,6 +35,16 @@
             <input id="danoCritico" type="number" placeholder="Porcentagem do dano" formControlName="danoCritico">
         </div>
     </div>
+    <div *ngIf="tipoReacao() !== reacaoSemAdicao">
+        <div>
+            <label for="maestriaElemental">Maestria elemental: </label>
+            <input id="maestriaElemental" type="number" placeholder="Valor absoluto" formControlName="maestriaElemental">
+        </div>
+    </div>
+    <div>
+        <label for="nivel">Nível do personagem: </label>
+        <input id="nivel" type="number" placeholder="Valor absoluto" formControlName="nivel">
+    </div>
   
     <!-- Submit Button -->
     <button type="submit">Submit</button>

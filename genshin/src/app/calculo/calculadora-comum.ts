@@ -40,7 +40,7 @@ export class CalculadoraComum implements Calculadora{
         if (valor === 0) {
             return 1;
         }
-        return valor;
+        return valor / 100;
     }
 
 }

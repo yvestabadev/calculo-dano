@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Elemento } from '../tipos/elemento';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +27,12 @@ export class SelectReacaoComponent {
   }
   
   public emitir() {
-    console.log(this.reacaoSelecionada);
     this.outputReacao.emit(this.reacaoSelecionada);
+  }
+
+  public reset(){
+    this.reacaoSelecionada = undefined;
+    this.elementoSelecionado = undefined;
+    this.emitir();
   }
 }

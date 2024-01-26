@@ -1,4 +1,4 @@
-import { FormArray, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { MapeamentoReacoes } from "../tipos/mapeamento-reacoes";
 import { Reacao } from "../tipos/reacao";
 import { TipoReacao } from "../tipos/tipo-reacao";
@@ -6,6 +6,7 @@ import { Calculadora } from "./calculadora";
 import { CalculadoraComum } from "./calculadora-comum";
 import { PorcentagemTalento } from "./porcentagem-talento";
 import { CalculadoraAmplificadora } from "./calculadora-amplificadora";
+import { CalculadoraTransformadora } from "./calculadora-transformadora";
 
 export class GeradorCalculadora {
 
@@ -16,7 +17,7 @@ export class GeradorCalculadora {
             case TipoReacao.AMPLIFICADORA:
                 return new CalculadoraAmplificadora(form, reacao);
             case TipoReacao.TRANSFORMATIVA:
-                throw new Error("Não implementado");
+                return new CalculadoraTransformadora(form, reacao);
         }
         throw new Error("Erro inesperado");
     }

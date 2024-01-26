@@ -1,2 +1,11 @@
-<app-select-reacao (outputReacao)="defineReacao($event)"></app-select-reacao>
-<app-form-dano *ngIf="reacao !== undefined" [reacao]="reacao!"></app-form-dano>
+<section id="calculadoraDano">
+    <h1>Comparar dano Genshin Impact</h1>
+    <app-select-reacao (outputReacao)="defineReacao($event)" #selectReacao [hidden]="esconderSelect"></app-select-reacao>
+    <app-form-dano *ngIf="reacao !== undefined" [reacao]="reacao!" (resultadoEmitter)="adicionarResultado($event)"></app-form-dano>
+    <div *ngIf="resultados.length > 0">
+        <button *ngIf="esconderSelect" (click)="esconderSelect = false">Calcular novamente e comparar</button>
+        <h2>Seus Resultados até agora: </h2>
+        <p>Note os resultados são apenas valores aproximados de 1 golpe. Leve também em consideração a frequência dele na hora de tomar uma decisão.</p>
+        <app-lista-calculos *ngFor="let resultado of resultados; let i = index" [resultado]="resultado" [index]="i + 1"></app-lista-calculos>
+    </div>    
+</section>

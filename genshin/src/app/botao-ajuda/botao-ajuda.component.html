@@ -1,0 +1,6 @@
+<button type="button" (click)="abrirModal()">ajuda</button>
+<dialog [id]="idModal">
+    <img [src]="'assets/img/' + imgSrc">
+	<p>{{textoModal}}</p>
+	<button type="button" (click)="fecharModal()" aria-label="close" class="x">❌</button>
+</dialog>

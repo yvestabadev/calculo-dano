@@ -19,7 +19,6 @@ export class CalculadoraAmplificadora extends CalculadoraComum{
             case Reacao.INTENSIFICACAO:
                 this.multiplicadorReacao = 1.15 * (1 + (this.bonusPropagacaoIntensificacao(maestriaElemental)) + bonusReacao);
         }
-        console.log(this.multiplicadorReacao);
     }
 
     private bonusFusaoVaporizar(maestrialElemental: number): number{

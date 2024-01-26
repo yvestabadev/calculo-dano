@@ -1,55 +1,96 @@
 <form [formGroup]="form" (ngSubmit)="calcular()">
     <div *ngIf="tipoReacao() !== reacaoTransformativa">
-        <div *ngFor="let talent of talento.controls; let i = index">
+        <div class="secaoDano" *ngFor="let talent of talento.controls; let i = index">
+            <p class="subtituloForm">Informações do talento (variante {{ i + 1}})</p>
             <div formArrayName="valorTalento">
-                <label for="talent-{{ i }}">Valor em % do talento (ex: 122,5):</label>
+                <label for="talent-{{ i }}">Valor em % do talento:
+                    <app-botao-ajuda [imgSrc]="'talento_porcentagem.PNG'"
+                        [textoModal]="'No caso desta imagem, você inseriria 401'"
+                        [idModal]="'modalTalentoPorcentagem'"></app-botao-ajuda>
+                </label>
                 <input id="talent-{{ i }}" type="number" [formControlName]="i">
             </div>
             <div formArrayName="valorPoder">
-                <label for="poder-{{ i }}">Poder correspondente ao talento (ATK, DEF, HP, etc):</label>
+                <label for="poder-{{ i }}">Poder correspondente ao talento:
+                    <app-botao-ajuda [imgSrc]="'talento_variante.PNG'"
+                        [textoModal]="'Coloque o atributo do personagem correspondente a variante da habilidade. Neste exemplo seria vida máxima.'"
+                        [idModal]="'modalTalentoPoder'"></app-botao-ajuda>
+                </label>
                 <input id="poder-{{ i }}" type="number" [formControlName]="i">
                 <div *ngIf="talento.controls.length > 1">
-                    <button type="button" (click)="removeTalento(i)">Remove</button>
+                    <button class="botaoVarianteTalento" type="button" (click)="removeTalento(i)">Remover variante de
+                        talento</button>
                 </div>
             </div>
+            <button class="botaoVarianteTalento" type="button" (click)="addTalento()">Adicionar outra variante de
+                talento</button>
         </div>
-        <button type="button" (click)="addTalento()">Adicionar outra variante de talento</button>
-        <div>
-            <label for="multDanoBase">Multiplicador de dano base (Ex: habilidade da Furina que transforma o dano em 110% do original): </label>
-            <input id="multDanoBase" type="number" placeholder="Porcentagem do dano original" formControlName="multiplicaDanoBase">
+    </div>
+
+    <div class="secaoDano">
+        <p class="subtituloForm">Bônus gerais</p>
+        <div class="atributoDano">
+            <label for="nivel">Nível do personagem:</label>
+            <input id="nivel" type="number" placeholder="Valor absoluto" formControlName="nivel">
         </div>
-        <div>
-            <label for="addDanoBase">Adição ao dano base (Ex: habilidade que aumenta o dano em 15%): </label>
-            <input id="addDanoBase" type="number" placeholder="Porcentagem da adição" formControlName="somaDanoBase">
-        </div>
-        <div>
-            <label for="bonusDanoElemento">Bônus do elemento da habilidade (Ex: set da bruxa carmesin, ou bônus de dano físico): </label>
-            <input id="bonusDanoElemento" type="number" placeholder="Porcentagem do bônus" formControlName="bonusDanoElemento">
-        </div>
-        <div>
-            <label for="taxaCritica">Taxa crítica: </label>
-            <input id="taxaCritica" type="number" placeholder="Porcentagem da taxa" formControlName="taxaCritica">
-        </div>
-        <div>
-            <label for="danoCritico">Dano crítico: </label>
-            <input id="danoCritico" type="number" placeholder="Porcentagem do dano" formControlName="danoCritico">
+        <div *ngIf="tipoReacao() !== reacaoTransformativa">
+            <div class="atributoDano">
+                <label for="multDanoBase">Modificador do dano original em %:
+                    <app-botao-ajuda [imgSrc]="'dano_original_mudado.PNG'"
+                        [textoModal]="'Coloque a porcentagem média da modificação do ataque.\nATENÇÃO: em português está mal traduzido. O texto diz que aumenta 110% mas em inglês diz que causa 110% do dano original.'"
+                        [idModal]="'modalModificaDano'"></app-botao-ajuda>
+                </label>
+                <input id="multDanoBase" type="number" placeholder="Porcentagem do dano original"
+                    formControlName="multiplicaDanoBase">
+            </div>
+            <div class="atributoDano">
+                <label for="addDanoBase">Adição ao dano base em %:
+                    <app-botao-ajuda [imgSrc]="'adicional_dano_base.PNG'"
+                        [textoModal]="'De acordo com a imagem, o valor seria 16% ou 32%, caso queira simular com 2 acúmulos'"
+                        [idModal]="'modalDanoBase'"></app-botao-ajuda>
+                </label>
+                <input id="addDanoBase" type="number" placeholder="Porcentagem da adição"
+                    formControlName="somaDanoBase">
+            </div>
+            <div class="atributoDano">
+                <label for="bonusDanoElemento">Bônus do elemento da habilidade em %:
+                    <app-botao-ajuda [imgSrc]="'bonus_dano_elemental.PNG'"
+                        [textoModal]="'De acordo com a imagem, o valor seria 76,6. Verifique no status do personagem.'"
+                        [idModal]="'modalBonusDanoElemento'"></app-botao-ajuda>
+                </label>
+                <input id="bonusDanoElemento" type="number" placeholder="Porcentagem do bônus"
+                    formControlName="bonusDanoElemento">
+            </div>
+            <div class="atributoDano">
+                <label for="taxaCritica">Taxa crítica: </label>
+                <input id="taxaCritica" type="number" placeholder="Porcentagem da taxa" formControlName="taxaCritica">
+            </div>
+            <div class="atributoDano">
+                <label for="danoCritico">Dano crítico: </label>
+                <input id="danoCritico" type="number" placeholder="Porcentagem do dano" formControlName="danoCritico">
+            </div>
         </div>
     </div>
     <div *ngIf="tipoReacao() !== reacaoSemAdicao">
-        <div>
-            <label for="maestriaElemental">Maestria elemental: </label>
-            <input id="maestriaElemental" type="number" placeholder="Valor absoluto" formControlName="maestriaElemental">
-        </div>
-        <div>
-            <label for="bonusReacao">Bônus de reação (ex: bônus da bruxa carmesin): </label>
-            <input id="bonusReacao" type="number" placeholder="Porcentagem do bônus" formControlName="bonusReacao">
+        <div class="secaoDano">
+            <p class="subtituloForm">Bônus de reação</p>
+            <div class="atributoDano">
+                <label for="maestriaElemental">Maestria elemental: </label>
+                <input id="maestriaElemental" type="number" placeholder="Valor absoluto"
+                    formControlName="maestriaElemental">
+            </div>
+            <div class="atributoDano">
+                <label for="bonusReacao">Bônus de reação:
+                    <app-botao-ajuda [imgSrc]="'bonus_reacao_elemental.PNG'"
+                        [textoModal]="'Um exemplo é o set Bruxa Carmesin. No caso de vaporização colocaria 15'"
+                        [idModal]="'modalBonusReacao'"></app-botao-ajuda>
+                </label>
+                <input id="bonusReacao" type="number" placeholder="Porcentagem do bônus" formControlName="bonusReacao">
+            </div>
         </div>
     </div>
-    <div>
-        <label for="nivel">Nível do personagem: </label>
-        <input id="nivel" type="number" placeholder="Valor absoluto" formControlName="nivel">
-    </div>
-  
+
+
     <!-- Submit Button -->
     <button type="submit">Submit</button>
-  </form>
+</form>

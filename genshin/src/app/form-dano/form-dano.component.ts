@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Reacao } from '../tipos/reacao';
 import { TipoReacao } from '../tipos/tipo-reacao';
 import { MapeamentoReacoes } from '../tipos/mapeamento-reacoes';
@@ -6,11 +6,12 @@ import { PorcentagemTalento } from '../calculo/porcentagem-talento';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GeradorCalculadora } from '../calculo/gerador-calculadora';
+import { BotaoAjudaComponent } from '../botao-ajuda/botao-ajuda.component';
 
 @Component({
   selector: 'app-form-dano',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, BotaoAjudaComponent],
   templateUrl: './form-dano.component.html',
   styleUrl: './form-dano.component.css'
 })
@@ -21,6 +22,7 @@ export class FormDanoComponent{
   poderHabilidades: PorcentagemTalento[] = [new PorcentagemTalento(0.0, 0.0)];
   campos?: string[];
   form!: FormGroup;
+  @Output() resultadoEmitter: EventEmitter<number> = new EventEmitter<number>;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -42,7 +44,7 @@ export class FormDanoComponent{
   }
 
   public calcular(): void{
-    console.log(GeradorCalculadora.instanciarCalculadora(this.reacao, this.form).calcular());
+    this.resultadoEmitter.emit(GeradorCalculadora.instanciarCalculadora(this.reacao, this.form).calcular());
   }
 
   get talento(){

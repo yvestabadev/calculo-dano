@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Reacao } from '../tipos/reacao';
 import { TipoReacao } from '../tipos/tipo-reacao';
 import { MapeamentoReacoes } from '../tipos/mapeamento-reacoes';

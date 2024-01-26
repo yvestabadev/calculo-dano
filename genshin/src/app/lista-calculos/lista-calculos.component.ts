@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Calculadora } from '../calculo/calculadora';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-lista-calculos',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './lista-calculos.component.html',
   styleUrl: './lista-calculos.component.css'
 })
@@ -18,11 +19,12 @@ export class ListaCalculosComponent implements OnInit{
   index!: number;
 
   resultado!: number;
-  explicacao!: string;
+  explicacao!: string[];
 
   ngOnInit(): void {
     this.resultado = Math.round(this.calculadora.calcular());
-    this.explicacao = this.calculadora.explicacao();
+    //parágrafos
+    this.explicacao = this.calculadora.explicacao().split('@');
   }
   
 }

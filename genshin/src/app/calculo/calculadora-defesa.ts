@@ -4,6 +4,6 @@ export class CalculadoraDefesa{
     }
 
     static valorDefPorcentagem(nivelPersonagem: number){
-        return ((950 / (5 * nivelPersonagem + 950 + 500)) * 100).toFixed(2) + '%';
+        return (((950 / (5 * nivelPersonagem + 950 + 500)) * 100).toFixed(2) + '%').replace('.',',');
     }
 }

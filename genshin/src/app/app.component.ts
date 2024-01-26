@@ -5,6 +5,7 @@ import { FormDanoComponent } from './form-dano/form-dano.component';
 import { Reacao } from './tipos/reacao';
 import { CommonModule } from '@angular/common';
 import { ListaCalculosComponent } from './lista-calculos/lista-calculos.component';
+import { Calculadora } from './calculo/calculadora';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +17,15 @@ import { ListaCalculosComponent } from './lista-calculos/lista-calculos.componen
 export class AppComponent {
 
   reacao?: Reacao;
-  resultados: number[] = [];
+  calculadoras: Calculadora[] = [];
   @ViewChild('selectReacao') selectReacao!: SelectReacaoComponent;
   esconderSelect: boolean = false;
 
   public defineReacao(reacao: Reacao) {
     this.reacao = reacao;
   }
-  adicionarResultado(resultado: number) {
-    this.resultados.push(resultado);
+  adicionarResultado(calculadora: Calculadora) {
+    this.calculadoras.push(calculadora);
     this.selectReacao.reset();
     this.esconderSelect = true;
   }

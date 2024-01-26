@@ -7,6 +7,7 @@ import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } f
 import { CommonModule } from '@angular/common';
 import { GeradorCalculadora } from '../calculo/gerador-calculadora';
 import { BotaoAjudaComponent } from '../botao-ajuda/botao-ajuda.component';
+import { Calculadora } from '../calculo/calculadora';
 
 @Component({
   selector: 'app-form-dano',
@@ -22,7 +23,7 @@ export class FormDanoComponent{
   poderHabilidades: PorcentagemTalento[] = [new PorcentagemTalento(0.0, 0.0)];
   campos?: string[];
   form!: FormGroup;
-  @Output() resultadoEmitter: EventEmitter<number> = new EventEmitter<number>;
+  @Output() resultadoEmitter: EventEmitter<Calculadora> = new EventEmitter<Calculadora>;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -44,9 +45,10 @@ export class FormDanoComponent{
   }
 
   public calcular(): void{
-    this.resultadoEmitter.emit(GeradorCalculadora.instanciarCalculadora(this.reacao, this.form).calcular());
+    this.resultadoEmitter.emit(GeradorCalculadora.instanciarCalculadora(this.reacao, this.form));
   }
 
+  //lidando com formArray início
   get talento(){
     return this.form.get('valorTalento') as FormArray;
   } 
@@ -63,7 +65,9 @@ export class FormDanoComponent{
   public removeTalento(i: number){
     this.talento.removeAt(i);
   }
+  //lidando com formArray fim
 
+  //usando get para retornar ENUM
   get reacaoTransformativa(){
     return TipoReacao.TRANSFORMATIVA;
   }

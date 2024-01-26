@@ -46,6 +46,10 @@ export class CalculadoraTransformadora implements Calculadora{
             (1 + (this.bonusMaestriaElemental() + this.bonusReacao));
     }
 
+    explicacao(): string {
+        throw new Error("Method not implemented.");
+    }
+
     private bonusMaestriaElemental(): number{
         return 16 * (this.maestriaElemental / (this.maestriaElemental + 2000));
     }

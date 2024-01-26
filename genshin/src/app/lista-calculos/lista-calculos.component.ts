@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Calculadora } from '../calculo/calculadora';
 
 @Component({
   selector: 'app-lista-calculos',
@@ -7,12 +8,21 @@ import { Component, Input } from '@angular/core';
   templateUrl: './lista-calculos.component.html',
   styleUrl: './lista-calculos.component.css'
 })
-export class ListaCalculosComponent {
+export class ListaCalculosComponent implements OnInit{
+
 
   @Input()
-  resultado!: number;
+  calculadora!: Calculadora;
 
   @Input()
   index!: number;
+
+  resultado!: number;
+  explicacao!: string;
+
+  ngOnInit(): void {
+    this.resultado = Math.round(this.calculadora.calcular());
+    this.explicacao = this.calculadora.explicacao();
+  }
   
 }

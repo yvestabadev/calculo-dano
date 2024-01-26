@@ -49,11 +49,11 @@ export class CalculadoraAmplificadora extends CalculadoraComum{
         switch(this.reacao){
             case Reacao.FUSAO:
             case Reacao.VAPORIZAR:
-                return '2,78 x ( ME (' + this.maestriaElemental + ') / (ME + 1400)), que é ' +
+                return '2,78 x ( ME =' + this.maestriaElemental + ' / (ME + 1400)), que é ' +
                     (this.bonusFusaoVaporizar() * 100).toFixed(2).replace('.',',') + '%';        
             case Reacao.PROPAGACAO:
             case Reacao.INTENSIFICACAO:
-                return '5 x ( ME (' + this.maestriaElemental + ') / (ME + 1200)), que é ' + 
+                return '5 x ( ME =' + this.maestriaElemental + ' / (ME + 1200)), que é ' + 
                     (this.bonusPropagacaoIntensificacao() * 100).toFixed(2).replace('.', ',') + '%';        
         }
         throw new Error("erro inesperado");

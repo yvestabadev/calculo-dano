@@ -43,8 +43,8 @@ export class CalculadoraComum implements Calculadora{
         let mediaDanoCritico = (this.taxaCritica * this.danoCritico) * 100;
         let resultadoSemDefesa = danoComBonusElemental * (1 + (this.taxaCritica * this.danoCritico));
         return 'Primeiro se calcula o dano original do talento, multiplicando a porcentagem pelo valor do atributo em questão (ATK, HP, DEF), que resultou em ' +
-            this.base + '@Depois se aplica a modificação do dano original (' + (this.multiplicadorDanoBase * 100) + '% = '+ 
-            danoBaseMultiplicado +')@' +
+            this.base + '@Depois se aplica a modificação do dano original (' + (this.multiplicadorDanoBase * 100).toFixed(2).replace('.',',') + '% = '+ 
+            danoBaseMultiplicado.toFixed(2).replace('.',',') +')@' +
             'Soma-se esse resultado com o somador de dano (' + (this.somadorDanoBase * 100).toFixed(2).replace('.',',') + '% = ' 
             + danoBaseSomado.toFixed(0) + ')@' + 
             'Sobre este resultado, aplica-se o bônus de dano do elemento correspondente (' + 
